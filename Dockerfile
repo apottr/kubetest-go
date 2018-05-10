@@ -4,8 +4,10 @@ FROM golang:alpine AS builder
 WORKDIR /go/src/app
 COPY . .
 RUN apk add --no-cache git
-RUN go-wrapper download   # "go get -d -v ./..."
-RUN go-wrapper install    # "go install -v ./..."
+#RUN go-wrapper download   # "go get -d -v ./..."
+#RUN go-wrapper install    # "go install -v ./..."
+RUN go get -d -v ./...
+RUN go install -v ./...
 
 #final stage
 FROM alpine:latest
